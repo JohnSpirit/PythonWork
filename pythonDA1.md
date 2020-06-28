@@ -1,9 +1,67 @@
 # Python爬虫+数据分析+数据可视化实战
 
-[TOC]
+<div class="toc">
+<ul>
+<li><a href="#python">Python爬虫+数据分析+数据可视化实战</a><ul>
+<li><a href="#1">1. 背景介绍</a></li>
+<li><a href="#2">2. 需求目标</a></li>
+<li><a href="#3-urllibbangumibilibili">3. 基于urllib的bangumi和bilibili一键爬虫脚本的编写</a><ul>
+<li><a href="#31-bangumi">3.1 bangumi网站分析及爬虫脚本的编写</a><ul>
+<li><a href="#311">3.1.1 网站分析</a></li>
+<li><a href="#312">3.1.2 代码实现</a></li>
+</ul>
+</li>
+<li><a href="#32-bilibili">3.2 bilibili网站分析及爬虫脚本的编写</a><ul>
+<li><a href="#321">3.2.1 网站分析</a></li>
+<li><a href="#322">3.2.2 代码实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-pandasmatplotlib">4. 基于pandas的综合数据分析和基于matplotlib的数据可视化</a><ul>
+<li><a href="#41">4.1 导入依赖库</a></li>
+<li><a href="#42">4.2 数据清洗</a><ul>
+<li><a href="#421">4.2.1 日期型数据处理</a></li>
+<li><a href="#422-bilibili">4.2.2 bilibili评分缺失值处理</a></li>
+</ul>
+</li>
+<li><a href="#43">4.3 基本描述统计</a><ul>
+<li><a href="#431-bilibili">4.3.1 bilibili评分</a></li>
+<li><a href="#432-bangumi">4.3.2 bangumi评分</a></li>
+</ul>
+</li>
+<li><a href="#44-bangumi">4.4 bangumi动画作品数据分析</a><ul>
+<li><a href="#441">4.4.1 每个动画公司各年度制作了多少动画</a></li>
+<li><a href="#442">4.4.2 总的动画制作分布</a></li>
+<li><a href="#443">4.4.3 每个动画公司制作的动画部数及平均评分</a></li>
+<li><a href="#444-2000-2019">4.4.4 2000-2019年热门动画作品及趋势分析</a></li>
+</ul>
+</li>
+<li><a href="#45">4.5 两站动画匹配与数据库的合并</a><ul>
+<li><a href="#451">4.5.1 匹配策略</a></li>
+<li><a href="#452">4.5.2 查询脚本</a></li>
+<li><a href="#453">4.5.3 信息匹配</a></li>
+<li><a href="#454">4.5.4 数据库合并</a></li>
+</ul>
+</li>
+<li><a href="#46">4.6 两站评分综合分析</a><ul>
+<li><a href="#461">4.6.1 相关性分析与散点图</a></li>
+<li><a href="#462">4.6.2 气泡图、二维频次直方图与三维柱状图</a></li>
+<li><a href="#463">4.6.3 箱线图</a></li>
+<li><a href="#464">4.6.4 两网站评分特征及原因推测</a></li>
+<li><a href="#465">4.6.5 总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5">5 结语</a></li>
+</ul>
+</li>
+</ul>
+</div>
 
 ## 1. 背景介绍
-哔哩哔哩（www.bilibili.com，英文名称：bilibili，简称B站）现为中国年轻世代高度聚集的文化社区和视频平台，该网站于2009年6月26日创建。
+哔哩哔哩（[www.bilibili.com](www.bilibili.com)，英文名称：bilibili，简称B站）现为中国年轻世代高度聚集的文化社区和视频平台，该网站于2009年6月26日创建。
 
 B站早期是一个ACG（动画、漫画、游戏）内容创作与分享的视频网站。经过十年多的发展，围绕用户、创作者和内容，构建了一个源源不断产生优质内容的生态系统，B站已经涵盖7000多个兴趣圈层的多元文化社区。
 哔哩哔哩作为目前国内最大的动画作品平台，已上线了3000多部来自日本、美国以及国内的动画作品，具有大量的播放、点赞、弹幕、评分等数据可供分析。
